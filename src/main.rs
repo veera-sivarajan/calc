@@ -1,7 +1,3 @@
-mod stack;
-
-pub use crate::stack::Stack;
-
 fn precedence(operator: &char) -> i32 {
     if *operator == '^' {
         3
@@ -14,12 +10,38 @@ fn precedence(operator: &char) -> i32 {
     }
 }
 
-fn infix_to_postfix(infix: &String) {
-    let mut stack: Stack = Stack::new();
+fn infix_to_postfix(infix: &String) -> String {
+    let mut stack = Vec::new();
+    let mut result = String::from("");
+    for letter in infix.chars() {
+        if letter.is_digit(10) {
+            result.push(letter);
+        } else if letter == '(' {
+            stack.push(letter);
+        } else if letter == ')' {
+            while *stack.last().unwrap() != '(' {
+                result.push(stack.pop().unwrap());
+            }
+            stack.pop();
+        } else if letter.is_whitespace() {
+            continue;
+        } else {
+            while !stack.is_empty() &&
+                precedence(&letter) <= precedence(stack.last().unwrap()) {
+                result.push(stack.pop().unwrap());
+            }
+            stack.push(letter);
+        }
+    }
+    while !stack.is_empty() {
+        result.push(stack.pop().unwrap());
+    }
+    result
 }
     
 
 fn main() {
     let input = String::from("1 + 2");
-    infix_to_postfix(&input);
+    let postfix = infix_to_postfix(&input);
+    println!{"Postfix: {}", postfix};
 }
