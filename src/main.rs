@@ -1,3 +1,6 @@
+mod lex;
+use lex::lex;
+
 use std::{
     io::{stdout, Write},
 };
@@ -15,5 +18,6 @@ fn get_input() -> String {
 
 fn main() {
     let input = get_input();
-    println!("You entered: {input}");
+    let tokens = lex(&input);
+    println!("Tokens: {:?}", tokens);
 }
