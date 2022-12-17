@@ -2,9 +2,23 @@ const keys = [
     ['C', '/', '*', 'AC'],
     ['7', '8', '9', '-'],
     ['4', '5', '6', '+'],
-    ['1', '2', '3', '='],
+    ['1', '2', '3', 'calc'],
     ['0', 'E', '.', 'E'],
 ];
+
+
+function buttonHandler(text) {
+    const display = document.getElementById("displayArea");
+    if (text === 'AC') {
+        display.value = "";
+    } else if (text === 'C') {
+        display.value = display.value.substring(0, display.value.length - 1);
+    } else if (['+', '-', '*', '/'].includes(text)) {
+        display.value += ' ' + text + ' ';
+    } else {
+        display.value += text;
+    }
+}
 
 window.onload = () => {
     const numRows = 5;
@@ -15,15 +29,12 @@ window.onload = () => {
             if ((row === 4 && col === 1) || (row === 4 && col === 3)) {
                 continue;
             }
-            const divEle = document.createElement("button");
+            const button = document.createElement("button");
             const text = keys[row][col];
-            if (text === '0') {
-                divEle.classList.add("item0");
-            } else if (text === '=') {
-                divEle.classList.add("itemEquals");
-            }
-            divEle.appendChild(document.createTextNode(text));
-            grid.appendChild(divEle);
+            button.classList.add("button-" + text);
+            button.appendChild(document.createTextNode(text));
+            button.addEventListener("click", () => { buttonHandler(text) });
+            grid.appendChild(button);
         }
     }
 }
