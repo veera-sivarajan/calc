@@ -1,11 +1,17 @@
 use std::cmp::Ordering;
 
-#[derive(Debug, PartialEq, Eq, PartialOrd, Copy, Clone)]
+#[derive(Debug, PartialEq, Eq, Copy, Clone)]
 pub enum Op {
     Add,
     Subtract,
     Divide,
     Multiply,
+}
+
+impl PartialOrd for Op {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
 }
 
 impl Ord for Op {
