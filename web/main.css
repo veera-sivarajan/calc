@@ -2,8 +2,10 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1px;
-    width: 900px;
-    height: 900px;
+    width: 700px;
+    height: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .item0 {
@@ -16,3 +18,13 @@
     grid-row-end: 6;
     grid-column-start: 4;
 }
+
+.display {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 700px;
+    height: 150px;
+}
+
+
