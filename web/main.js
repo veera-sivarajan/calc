@@ -12,7 +12,12 @@ function buttonHandler(text) {
     if (text === 'AC') {
         display.value = "";
     } else if (text === 'C') {
-        display.value = display.value.substring(0, display.value.length - 1);
+        const last_char = display.value[display.value.length - 1];
+        let last_index = display.value.length - 1;
+        if (last_char === ' ') {
+            last_index -= 1;
+        }
+        display.value = display.value.substring(0, last_index);
     } else if (['+', '-', '*', '/'].includes(text)) {
         display.value += ' ' + text + ' ';
     } else {
