@@ -79,7 +79,7 @@ pub fn lex(input: &str) -> Result<Vec<Token>, String> {
                 let mut number_str = String::new();
                 number_str.push(c);
                 while let Some(ch) = chars.peek() {
-                    if ch.is_numeric() {
+                    if ch.is_numeric() || *ch == '.' {
                         number_str.push(chars.next().unwrap());
                     } else {
                         break;
