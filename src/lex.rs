@@ -47,10 +47,22 @@ pub enum Token {
 
 pub fn lex(input: &str) -> Result<Vec<Token>, String> {
     let mut tokens = vec![];
-    for c in input.chars() {
+    let mut chars = input.chars();
+    while let Some(c) = chars.next() {
         let token = match c {
             ' ' => continue,
-            '0'..='9' => Token::Number(c.to_digit(10).unwrap().into()),
+            '0'..='9' => {
+                let mut number_str = String::new();
+                number_str.push(c);
+                while let Some(ch) = chars.next() {
+                    if ch.is_numeric() {
+                        number_str.push(ch);
+                    } else {
+                        break;
+                    }
+                };
+                Token::Number(number_str.parse::<f64>().unwrap())
+            }
             '+' => Token::Operation(Op::Add),
             '-' => Token::Operation(Op::Subtract),
             '*' => Token::Operation(Op::Multiply),
