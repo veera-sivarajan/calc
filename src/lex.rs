@@ -47,16 +47,16 @@ pub enum Token {
 
 pub fn lex(input: &str) -> Result<Vec<Token>, String> {
     let mut tokens = vec![];
-    let mut chars = input.chars();
+    let mut chars = input.chars().peekable();
     while let Some(c) = chars.next() {
         let token = match c {
             ' ' => continue,
             '0'..='9' => {
                 let mut number_str = String::new();
                 number_str.push(c);
-                while let Some(ch) = chars.next() {
+                while let Some(ch) = chars.peek() {
                     if ch.is_numeric() {
-                        number_str.push(ch);
+                        number_str.push(chars.next().unwrap());
                     } else {
                         break;
                     }
