@@ -1,6 +1,8 @@
 mod utils;
 
 use wasm_bindgen::prelude::*;
+use core;
+use std::str;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -16,4 +18,12 @@ extern {
 #[wasm_bindgen]
 pub fn greet() {
     alert("Hello, wasm!");
+}
+
+#[wasm_bindgen]
+pub fn calculate(input: &str) -> String {
+    match core::calculate(input) {
+        Ok(token) => token.to_string(),
+        Err(msg) => format!("Error: {msg}"),
+    }
 }
