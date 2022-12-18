@@ -76,7 +76,7 @@ fn evaluate(expr: &mut VecDeque<Token>) -> Result<Token, String> {
     }
 }
 
-fn calculate(input: &str) -> Result<Token, String> {
+pub fn calculate(input: &str) -> Result<Token, String> {
     // let input = "3 + 4 * 2 / ( 1 - 5 )";
     let tokens = lex(input)?;
     let mut postfix = postfix(&tokens);

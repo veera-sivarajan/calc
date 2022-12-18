@@ -1,6 +1,9 @@
 use std::{
     io::{stdout, Write},
 };
+
+use core;
+
 fn get_input() -> String {
     let mut input = String::new();
     input.clear();
@@ -13,12 +16,12 @@ fn get_input() -> String {
 }
 
 fn main() {
-    // loop {
-    //     let input = get_input();
-    //     match calculate(&input) {
-    //         Err(msg) => eprintln!("Error: {msg}"),
-    //         Ok(token) => println!("{}", token),
-    //     }
-    // }
-    println!("Hello, world!");
+    loop {
+        let input = get_input();
+        match core::calculate(&input) {
+            Err(msg) => eprintln!("Error: {msg}"),
+            Ok(token) => println!("{}", token),
+        }
+    }
+    // println!("Hello, world!");
 }
