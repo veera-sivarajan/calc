@@ -1,4 +1,5 @@
 use std::cmp::Ordering;
+use std::fmt;
 
 #[derive(Debug, PartialEq, Eq, Copy, Clone)]
 pub enum Op {
@@ -6,6 +7,18 @@ pub enum Op {
     Subtract,
     Divide,
     Multiply,
+}
+
+
+impl fmt::Display for Op {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Op::Add => write!(f, "+"),
+            Op::Subtract => write!(f, "-"),
+            Op::Divide => write!(f, "/"),
+            Op::Multiply => write!(f, "*"),
+        }
+    }
 }
 
 impl PartialOrd for Op {
@@ -37,12 +50,23 @@ impl Ord for Op {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub enum Token {
     Number(f64),
     Operation(Op),
     OpenParen,
     CloseParen,
+}
+
+impl fmt::Display for Token {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Token::Number(n) => write!(f, "{}", n),
+            Token::Operation(op) => write!(f, "{}", op),
+            Token::OpenParen => write!(f, "("),
+            Token::CloseParen => write!(f, ")"),
+        }
+    }
 }
 
 pub fn lex(input: &str) -> Result<Vec<Token>, String> {

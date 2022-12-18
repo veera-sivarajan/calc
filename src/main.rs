@@ -57,9 +57,49 @@ fn postfix(tokens: &[Token]) -> VecDeque<Token> {
     queue
 }
 
+fn evaluate(expr: &mut VecDeque<Token>) -> Result<Token, String> {
+    let mut stack: Vec<Token> = vec![];
+    while let Some(token) = expr.pop_front() {
+        match token {
+            Token::Number(_) => stack.push(token),
+            Token::Operation(op) => {
+                let Some(Token::Number(rhs)) = stack.pop() else {
+                    return Err(String::from("Expected Number."));
+                };
+                let Some(Token::Number(lhs)) = stack.pop() else {
+                    return Err(String::from("Expected Number."));
+                };
+                let output = match op {
+                    Op::Add => Token::Number(rhs + lhs),
+                    Op::Subtract => Token::Number(lhs - rhs),
+                    Op::Multiply => Token::Number(lhs * rhs),
+                    Op::Divide => Token::Number(lhs / rhs),
+                };
+                stack.push(output);
+            }
+            _ => return Err(String::from("Unexpected token.")),
+        }
+    }
+    if stack.len() == 1 {
+        Ok(stack.first().unwrap().clone())
+    } else {
+        Err(String::from("Unable to evaluate infix expression."))
+    }
+}
+
+fn calculate(input: &str) -> Result<Token, String> {
+    // let input = "3 + 4 * 2 / ( 1 - 5 )";
+    let tokens = lex(input)?;
+    let mut postfix = postfix(&tokens);
+    evaluate(&mut postfix)
+}
+
 fn main() {
-    let input = get_input();
-    let tokens = lex(&input);
-    let output = postfix(&tokens.unwrap());
-    println!("Ouput: {:?}", output);
+    loop {
+        let input = get_input();
+        match calculate(&input) {
+            Err(msg) => eprintln!("Error: {msg}"),
+            Ok(token) => println!("{}", token),
+        }
+    }
 }
