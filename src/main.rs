@@ -17,7 +17,7 @@ fn get_input() -> String {
     input
 }
 
-fn evaluate(tokens: &[Token]) -> VecDeque<Token> {
+fn postfix(tokens: &[Token]) -> VecDeque<Token> {
     let mut queue = VecDeque::new();
     let mut stack = vec![];
 
@@ -60,6 +60,6 @@ fn evaluate(tokens: &[Token]) -> VecDeque<Token> {
 fn main() {
     let input = get_input();
     let tokens = lex(&input);
-    let output = evaluate(&tokens.unwrap());
+    let output = postfix(&tokens.unwrap());
     println!("Ouput: {:?}", output);
 }
