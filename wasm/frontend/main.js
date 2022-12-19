@@ -1,4 +1,5 @@
 import * as calc from "calc";
+import "./main.css";
 
 const keys = [
     ['C', '/', '*', 'AC'],
