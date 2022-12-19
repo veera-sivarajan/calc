@@ -35,6 +35,17 @@ eval("\"use strict\";\n// Instantiate WebAssembly module\nvar wasmExports = __we
 
 /***/ }),
 
+/***/ "./main.css":
+/*!******************!*\
+  !*** ./main.css ***!
+  \******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var content = __webpack_require__(/*! !./node_modules/css-loader/dist/cjs.js!./main.css */ \"./node_modules/css-loader/dist/cjs.js!./main.css\");\n\nif (typeof content === 'string') {\n  content = [[module.i, content, '']];\n}\n\nvar options = {}\n\noptions.insert = \"head\";\noptions.singleton = false;\n\nvar update = __webpack_require__(/*! ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ \"./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\")(content, options);\n\nif (content.locals) {\n  module.exports = content.locals;\n}\n\n\n//# sourceURL=webpack:///./main.css?");
+
+/***/ }),
+
 /***/ "./main.js":
 /*!*****************!*\
   !*** ./main.js ***!
@@ -43,18 +54,18 @@ eval("\"use strict\";\n// Instantiate WebAssembly module\nvar wasmExports = __we
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var calc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! calc */ \"../pkg/wasm.js\");\n\n\nconst keys = [\n    ['C', '/', '*', 'AC'],\n    ['7', '8', '9', '-'],\n    ['4', '5', '6', '+'],\n    ['1', '2', '3', 'calc'],\n    ['0', 'E', '.', 'E'],\n];\n\n\nfunction buttonHandler(text) {\n    const display = document.getElementById(\"displayArea\");\n    if (text === 'AC') {\n        display.value = \"\";\n    } else if (text === 'C') {\n        const last_char = display.value[display.value.length - 1];\n        let last_index = display.value.length - 1;\n        if (last_char === ' ') {\n            last_index -= 1;\n        }\n        display.value = display.value.substring(0, last_index);\n    } else if (['+', '-', '*', '/'].includes(text)) {\n        display.value += ' ' + text + ' ';\n    } else if (text === \"calc\") {\n        console.log(\"Evaluating: \", display.value);\n        const output = calc__WEBPACK_IMPORTED_MODULE_0__[\"calculate\"](display.value);\n        console.log(\"Output: \", output);\n        display.value = output;\n    } else {\n        display.value += text;\n    }\n}\n\nconst numRows = 5;\nconst numCols = 4;\nconst grid = document.getElementById(\"keyGrid\");\nfor (let row = 0; row < numRows; ++row) {\n    for (let col = 0; col < numCols; ++col) {\n        if ((row === 4 && col === 1) || (row === 4 && col === 3)) {\n            continue;\n        }\n        const button = document.createElement(\"button\");\n        const text = keys[row][col];\n        button.classList.add(\"button-\" + text);\n        button.appendChild(document.createTextNode(text));\n        button.addEventListener(\"click\", () => { buttonHandler(text) });\n        grid.appendChild(button);\n    }\n}\n\n\n//# sourceURL=webpack:///./main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var calc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! calc */ \"../pkg/wasm.js\");\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./main.css */ \"./main.css\");\n/* harmony import */ var _main_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_main_css__WEBPACK_IMPORTED_MODULE_1__);\n\n\n\nconst keys = [\n    ['C', '/', '*', 'AC'],\n    ['7', '8', '9', '-'],\n    ['4', '5', '6', '+'],\n    ['1', '2', '3', 'calc'],\n    ['0', 'E', '.', 'E'],\n];\n\n\nfunction buttonHandler(text) {\n    const display = document.getElementById(\"displayArea\");\n    if (text === 'AC') {\n        display.value = \"\";\n    } else if (text === 'C') {\n        const last_char = display.value[display.value.length - 1];\n        let last_index = display.value.length - 1;\n        if (last_char === ' ') {\n            last_index -= 1;\n        }\n        display.value = display.value.substring(0, last_index);\n    } else if (['+', '-', '*', '/'].includes(text)) {\n        display.value += ' ' + text + ' ';\n    } else if (text === \"calc\") {\n        console.log(\"Evaluating: \", display.value);\n        const output = calc__WEBPACK_IMPORTED_MODULE_0__[\"calculate\"](display.value);\n        console.log(\"Output: \", output);\n        display.value = output;\n    } else {\n        display.value += text;\n    }\n}\n\nconst numRows = 5;\nconst numCols = 4;\nconst grid = document.getElementById(\"keyGrid\");\nfor (let row = 0; row < numRows; ++row) {\n    for (let col = 0; col < numCols; ++col) {\n        if ((row === 4 && col === 1) || (row === 4 && col === 3)) {\n            continue;\n        }\n        const button = document.createElement(\"button\");\n        const text = keys[row][col];\n        button.classList.add(\"button-\" + text);\n        button.appendChild(document.createTextNode(text));\n        button.addEventListener(\"click\", () => { buttonHandler(text) });\n        grid.appendChild(button);\n    }\n}\n\n\n//# sourceURL=webpack:///./main.js?");
 
 /***/ }),
 
-/***/ "./node_modules/webpack/buildin/harmony-module.js":
-/*!*******************************************!*\
-  !*** (webpack)/buildin/harmony-module.js ***!
-  \*******************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./main.css":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./main.css ***!
+  \********************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = function(originalModule) {\n\tif (!originalModule.webpackPolyfill) {\n\t\tvar module = Object.create(originalModule);\n\t\t// module.parent = undefined by default\n\t\tif (!module.children) module.children = [];\n\t\tObject.defineProperty(module, \"loaded\", {\n\t\t\tenumerable: true,\n\t\t\tget: function() {\n\t\t\t\treturn module.l;\n\t\t\t}\n\t\t});\n\t\tObject.defineProperty(module, \"id\", {\n\t\t\tenumerable: true,\n\t\t\tget: function() {\n\t\t\t\treturn module.i;\n\t\t\t}\n\t\t});\n\t\tObject.defineProperty(module, \"exports\", {\n\t\t\tenumerable: true\n\t\t});\n\t\tmodule.webpackPolyfill = 1;\n\t}\n\treturn module;\n};\n\n\n//# sourceURL=webpack:///(webpack)/buildin/harmony-module.js?");
+eval("exports = module.exports = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ \"./node_modules/css-loader/dist/runtime/api.js\")(false);\n// Module\nexports.push([module.i, \".grid-container {\\n    display: grid;\\n    grid-template-columns: repeat(4, 1fr);\\n    grid-gap: 1px;\\n    width: 700px;\\n    height: 700px;\\n    margin-left: auto;\\n    margin-right: auto;\\n}\\n\\n.button-0 {\\n    grid-column-start: 1;\\n    grid-column-end: 3;\\n}\\n\\n.button-calc {\\n    grid-row-start: 4;\\n    grid-row-end: 6;\\n    grid-column-start: 4;\\n}\\n\\n.display {\\n    display: block;\\n    margin-right: auto;\\n    margin-left: auto;\\n    width: 700px;\\n    height: 150px;\\n}\\n\", \"\"]);\n\n\n//# sourceURL=webpack:///./main.css?./node_modules/css-loader/dist/cjs.js");
 
 /***/ })
 
