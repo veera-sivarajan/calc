@@ -32,7 +32,6 @@ function buttonHandler(text) {
     }
 }
 
-// window.onload = () => {
 const numRows = 5;
 const numCols = 4;
 const grid = document.getElementById("keyGrid");
@@ -49,4 +48,3 @@ for (let row = 0; row < numRows; ++row) {
         grid.appendChild(button);
     }
 }
-// }
