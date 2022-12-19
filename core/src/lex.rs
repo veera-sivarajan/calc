@@ -9,7 +9,6 @@ pub enum Op {
     Multiply,
 }
 
-
 impl fmt::Display for Op {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
@@ -84,7 +83,7 @@ pub fn lex(input: &str) -> Result<Vec<Token>, String> {
                     } else {
                         break;
                     }
-                };
+                }
                 Token::Number(number_str.parse::<f64>().unwrap())
             }
             '+' => Token::Operation(Op::Add),

@@ -1,5 +1,5 @@
 mod lex;
-use lex::{lex, Token, Op};
+use lex::{lex, Op, Token};
 use std::collections::VecDeque;
 
 fn postfix(tokens: &[Token]) -> VecDeque<Token> {
@@ -66,7 +66,7 @@ fn evaluate(expr: &mut VecDeque<Token>) -> Result<Token, String> {
         }
     }
     if stack.len() == 1 {
-        Ok(stack.first().unwrap().clone())
+        Ok(*stack.first().unwrap())
     } else {
         Err(String::from("Unable to evaluate infix expression."))
     }

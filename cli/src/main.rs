@@ -1,8 +1,4 @@
-use std::{
-    io::{stdout, Write},
-};
-
-use core;
+use std::io::{stdout, Write};
 
 fn get_input() -> String {
     let mut input = String::new();
@@ -23,5 +19,4 @@ fn main() {
             Ok(token) => println!("{}", token),
         }
     }
-    // println!("Hello, world!");
 }
