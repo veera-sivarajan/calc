@@ -7,6 +7,36 @@
         <script type="module" src="./bootstrap.js" defer></script>
         <link rel="stylesheet" href="main.css">
     </head>
+    <style>
+      .grid-container {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          grid-gap: 1px;
+          width: 700px;
+          height: 700px;
+          margin-left: auto;
+          margin-right: auto;
+      }
+
+      .button-0 {
+          grid-column-start: 1;
+          grid-column-end: 3;
+      }
+
+      .button-calc {
+          grid-row-start: 4;
+          grid-row-end: 6;
+          grid-column-start: 4;
+      }
+
+      .display {
+          display: block;
+          margin-right: auto;
+          margin-left: auto;
+          width: 700px;
+          height: 150px;
+      }
+    </style>
     <body>
       <input type="text" class="display" id="displayArea">
 
