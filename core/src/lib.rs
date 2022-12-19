@@ -2,10 +2,6 @@ mod lex;
 use lex::{lex, Token, Op};
 use std::collections::VecDeque;
 
-use std::{
-    io::{stdout, Write},
-};
-
 fn postfix(tokens: &[Token]) -> VecDeque<Token> {
     let mut queue = VecDeque::new();
     let mut stack = vec![];
